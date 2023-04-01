@@ -34,7 +34,7 @@ class User {
   static showUser = (argv) => {
     const allUsers = deal.readJsonData('users.json');
     const singleUser = allUsers.find((u) => u.id == argv.id);
-    if (!singleUser) console.log('no user with this id');
+    if (!singleUser) console.log('Invalid user ID..');
     else console.log(singleUser);
   };
 
@@ -47,9 +47,11 @@ class User {
       (data[index].name = argv.name),
         (data[index].email = argv.email),
         (data[index].age = argv.age);
+      deal.writeJsonData('users.json', data);
+      console.log('the user has been UPDATED..');
+    } else {
+      console.log('Invalid user ID..');
     }
-    deal.writeJsonData('users.json', data);
-    console.log('the user has been UPDATED..');
   };
 
   // Delete Specific User
@@ -59,10 +61,11 @@ class User {
 
     if (index !== -1) {
       data.splice(index, 1);
+      deal.writeJsonData('users.json', data);
+      console.log('the user has been DELETED..');
+    } else {
+      console.log('Invalid user ID..');
     }
-
-    deal.writeJsonData('users.json', data);
-    console.log('the user has been DELETED..');
   };
 
   // Delete All Users
