@@ -33,7 +33,7 @@ class User {
   // Show Specific User
   static showUser = (argv) => {
     const allUsers = deal.readJsonData('users.json');
-    const singleUser = allUsers.find((u) => u.id == argv.id);
+    const singleUser = allUsers.find((user) => user.id == argv.id);
     if (!singleUser) console.log('Invalid user ID..');
     else console.log(singleUser);
   };
@@ -44,11 +44,12 @@ class User {
     const index = data.findIndex((user) => user.id == argv.id);
 
     if (index !== -1) {
-      (data[index].name = argv.name),
-        (data[index].email = argv.email),
-        (data[index].age = argv.age);
+      data[index].name = argv.name || data[index].name;
+      data[index].email = argv.email || data[index].email;
+      data[index].age = argv.age || data[index].age;
       deal.writeJsonData('users.json', data);
-      console.log('the user has been UPDATED..');
+
+      console.log('the user has been UPDATED:', ...data);
     } else {
       console.log('Invalid user ID..');
     }
