@@ -1,0 +1,18 @@
+{{>header}}
+{{>nav}}
+<section class="container my-5">
+    <h2>Add Todo</h2>
+    <form method="post" action="/editLogic/{{data._id}}">
+        <div class="mb-3">
+            <input name="title" class="form-control" placeholder="title" value="{{data.title}}">
+        </div>
+        <div class="mb-3">
+            <input name="content" class="form-control" placeholder="content" value="{{data.content}}">
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-primary">Edit</button>
+        </div>
+    </form>
+</section>
+
+{{>footer}}
